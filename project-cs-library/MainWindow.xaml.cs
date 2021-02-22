@@ -20,9 +20,18 @@ namespace project_cs_library
     /// </summary>
     public partial class MainWindow : Window
     {
+        bibliotekaEntities context;
         public MainWindow()
         {
             InitializeComponent();
+            context = new bibliotekaEntities();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
+            wypozyczenieViewSource.Source = context.wypozyczenie.ToList();
         }
     }
 }
