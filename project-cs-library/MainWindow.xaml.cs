@@ -29,9 +29,27 @@ namespace project_cs_library
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
             wypozyczenieViewSource.Source = context.wypozyczenie.ToList();
+        }
+
+        private void PerformSearch(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
+            String title = titleText.Text;
+            String autor = autorText.Text;
+            DateTime? dateFrom = dataOdPicker.SelectedDate;
+            DateTime? dateTo = dataDoPicker.SelectedDate;
+
+            var query = from wypozyczenie in context.wypozyczenie
+                        where 
+                        (title.Length > 0 ? wypozyczenie.ksiazka.tytul.Contains(title) : true) &&
+                        (autor.Length > 0 ? wypozyczenie.ksiazka.autor.imie.Contains(autor) || wypozyczenie.ksiazka.autor.nazwisko.Contains(autor) : true) &&
+                        (dateFrom != null ? wypozyczenie.data_oddania > dateFrom || wypozyczenie.data_wypozyczenia > dateFrom : true) &&
+                        (dateTo != null ? wypozyczenie.data_oddania < dateTo || wypozyczenie.data_wypozyczenia < dateTo : true)
+                        select wypozyczenie;
+
+            wypozyczenieViewSource.Source = query.ToList();
         }
     }
 }

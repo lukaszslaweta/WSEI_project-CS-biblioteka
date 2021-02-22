@@ -23,6 +23,11 @@ namespace project_cs_library
         public int autor_id { get; set; }
         public string imie { get; set; }
         public string nazwisko { get; set; }
+
+        /// <summary>
+        /// Zwraca imiê i nazwisko autora w postaci np. A. Mickiewicz
+        /// </summary>
+        public string fullName => $"{imie[0]}. {nazwisko}";
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<ksiazka> ksiazka { get; set; }

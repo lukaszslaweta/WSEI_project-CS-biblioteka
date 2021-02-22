@@ -28,32 +28,60 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <TextBox Height="23" Grid.Row="0" Grid.Column="0" Text="Tytuł" VerticalAlignment="Top" Margin="10,10,10,10" />
-                <TextBox Height="23" Grid.Row="1" Grid.Column="0" Text="Autor" VerticalAlignment="Top" Margin="10,10,10,10" />
-                <DatePicker Height="23" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="10,10,10,10" />
-                <DatePicker Height="23" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10,10,10,10" />
+                <TextBox x:Name="titleText" Height="25" Grid.Row="0" Grid.Column="0" Text="Tytuł" VerticalAlignment="Top" Margin="10,10,10,10" LostFocus="PerformSearch" />
+                <TextBox x:Name="autorText" Height="25 " Grid.Row="1" Grid.Column="0" Text="Autor" VerticalAlignment="Top" Margin="10,10,10,10" LostFocus="PerformSearch" />
+                <DatePicker x:Name="dataOdPicker" Height="25" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="10,10,10,10" LostFocus="PerformSearch" />
+                <DatePicker x:Name="dataDoPicker" Height="25" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10,10,10,10" LostFocus="PerformSearch" />
             </Grid>
         </GroupBox>
         <DataGrid x:Name="wypozyczenieDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="wypozyczenie_idColumn" Header="wypozyczenie id" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="wypozyczenie_idColumn" Header="ID" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Content="{Binding wypozyczenie_id}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="data_oddaniaColumn" Header="data oddania" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="tytulColumn" Header="Tytuł" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding ksiazka.tytul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="autorColumn" Header="Autor" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding ksiazka.autor.fullName, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="data_wypozyczeniaColumn" Header="Data wypożyczenia" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding data_wypozyczenia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="data_oddaniaColumn" Header="Data oddania" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding data_oddania, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="data_wypozyczeniaColumn" Header="data wypozyczenia" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="imieColumn" Header="Imię" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding data_wypozyczenia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <TextBox Text="{Binding klient.imie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="nazwiskoColumn" Header="Nazwisko" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding klient.nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
