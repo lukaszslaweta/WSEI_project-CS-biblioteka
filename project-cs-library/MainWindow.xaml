@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_cs_library"
         mc:Ignorable="d"
-        Title="Biblioteka - Łukasz Sławęta" Height="522.435" Width="800" Loaded="Window_Loaded">
+        Title="Biblioteka - Łukasz Sławęta" Height="522.435" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <CollectionViewSource x:Key="wypozyczenieViewSource" d:DesignSource="{d:DesignInstance {x:Type local:wypozyczenie}, CreateList=True}"/>
     </Window.Resources>
@@ -62,7 +62,8 @@
                 </Grid>
             </Grid>
         </GroupBox>
-        <DataGrid x:Name="wypozyczenieDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="wypozyczenieDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="1" 
+                  RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="wypozyczenie_idColumn" Header="ID" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -74,42 +75,42 @@
                 <DataGridTemplateColumn x:Name="tytulColumn" Header="Tytuł" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding ksiazka.tytul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <TextBlock Text="{Binding ksiazka.tytul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="autorColumn" Header="Autor" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding ksiazka.autor.fullName, Mode=OneWay}"/>
+                            <TextBlock Text="{Binding ksiazka.autor.fullName, Mode=OneWay}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="data_wypozyczeniaColumn" Header="Data wypożyczenia" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding data_wypozyczenia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <DatePicker SelectedDate="{Binding data_wypozyczenia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="data_oddaniaColumn" Header="Data oddania" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding data_oddania, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <DatePicker SelectedDate="{Binding data_oddania, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="imieColumn" Header="Imię" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding klient.imie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <TextBlock Text="{Binding klient.imie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="nazwiskoColumn" Header="Nazwisko" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding klient.nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <TextBlock Text="{Binding klient.nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

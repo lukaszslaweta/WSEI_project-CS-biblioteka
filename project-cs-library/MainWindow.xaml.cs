@@ -72,5 +72,10 @@ namespace project_cs_library
             System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
             wypozyczenieViewSource.Source = context.wypozyczenie.ToList();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            context.SaveChanges();
+        }
     }
 }
