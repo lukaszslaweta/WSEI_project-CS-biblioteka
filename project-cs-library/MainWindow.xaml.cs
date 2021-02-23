@@ -51,5 +51,18 @@ namespace project_cs_library
 
             wypozyczenieViewSource.Source = query.ToList();
         }
+
+        private void SearchKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PerformSearch(null, null);
+            }
+        }
+
+        private void SearchDatePicker(object sender, SelectionChangedEventArgs e)
+        {
+            PerformSearch(null, null);
+        }
     }
 }
