@@ -26,6 +26,8 @@ namespace project_cs_library
         public string adres { get; set; }
         public Nullable<System.DateTime> data_urodzenia { get; set; }
         public string telefon { get; set; }
+
+        public string Summary => $"[{klient_id}] {nazwisko} {imie} {telefon}";
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<wypozyczenie> wypozyczenie { get; set; }

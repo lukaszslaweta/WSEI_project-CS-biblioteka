@@ -82,6 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddWypozyczenie.xaml.cs">
+      <DependentUpon>AddWypozyczenie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="autor.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
     <Compile Include="wypozyczenie.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AddWypozyczenie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

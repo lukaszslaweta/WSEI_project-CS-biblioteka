@@ -64,5 +64,11 @@ namespace project_cs_library
         {
             PerformSearch(null, null);
         }
+
+        private void AddNewEntry(object sender, RoutedEventArgs e)
+        {
+            AddWypozyczenie addWypozyczenie = new AddWypozyczenie(context);
+            addWypozyczenie.Show();
+        }
     }
 }

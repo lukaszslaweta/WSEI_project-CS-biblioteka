@@ -26,6 +26,8 @@ namespace project_cs_library
         public System.DateTime data_wydania { get; set; }
         public string wydawnictwo { get; set; }
         public Nullable<int> liczba_stron { get; set; }
+
+        public string Summary => $"{tytul} - {autor.fullName} ({data_wydania.Year})";
     
         public virtual autor autor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

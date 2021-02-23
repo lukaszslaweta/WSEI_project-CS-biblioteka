@@ -115,7 +115,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Nowy wpis..." HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="25" />
+        <Button Content="Nowy wpis..." HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="25" Click="AddNewEntry" />
 
     </Grid>
 </Window>
