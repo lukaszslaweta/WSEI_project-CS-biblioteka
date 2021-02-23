@@ -68,7 +68,9 @@ namespace project_cs_library
         private void AddNewEntry(object sender, RoutedEventArgs e)
         {
             AddWypozyczenie addWypozyczenie = new AddWypozyczenie(context);
-            addWypozyczenie.Show();
+            addWypozyczenie.ShowDialog();
+            System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
+            wypozyczenieViewSource.Source = context.wypozyczenie.ToList();
         }
     }
 }

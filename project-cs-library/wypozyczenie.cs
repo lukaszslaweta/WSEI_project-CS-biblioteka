@@ -17,7 +17,7 @@ namespace project_cs_library
         public int wypozyczenie_id { get; set; }
         public Nullable<int> ksiazka_id { get; set; }
         public Nullable<int> klient_id { get; set; }
-        public System.DateTime data_wypozyczenia { get; set; }
+        public System.DateTime data_wypozyczenia { get; set; } = DateTime.Now;
         public Nullable<System.DateTime> data_oddania { get; set; }
     
         public virtual klient klient { get; set; }

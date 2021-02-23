@@ -33,6 +33,8 @@ namespace project_cs_library
             // Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
             ksiazkaViewSource.Source = context.ksiazka.ToList();
             klientViewSource.Source = context.klient.ToList();
+            newClientGrid.DataContext = new klient();
+            mainGrid.DataContext = new wypozyczenie();
         }
 
         private void ChangeKlientType(object sender, RoutedEventArgs e)
@@ -47,6 +49,27 @@ namespace project_cs_library
                 existingClientGrid.Visibility = Visibility.Visible;
                 newClientGrid.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            klient k;
+            if ((bool)newClientRadio.IsChecked)
+            {
+                k = (klient)newClientGrid.DataContext;
+                context.klient.Add(k);
+            }
+            else
+            {
+                k = (klient)existingClientCombo.SelectedItem;
+            }
+            ksiazka book = (ksiazka)ksiazkaCombo.SelectedItem;
+            wypozyczenie w = (wypozyczenie)mainGrid.DataContext;
+            w.klient_id = k.klient_id;
+            w.ksiazka_id = book.ksiazka_id;
+            context.wypozyczenie.Add(w);
+            context.SaveChanges();
+            Close();
         }
     }
 }
