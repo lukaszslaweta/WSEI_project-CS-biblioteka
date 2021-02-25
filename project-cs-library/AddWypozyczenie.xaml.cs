@@ -31,10 +31,23 @@ namespace project_cs_library
             System.Windows.Data.CollectionViewSource klientViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klientViewSource")));
             System.Windows.Data.CollectionViewSource ksiazkaViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("ksiazkaViewSource")));
             // Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
-            ksiazkaViewSource.Source = context.ksiazka.ToList();
+            ksiazkaViewSource.Source = GetAvailableBooks();
             klientViewSource.Source = context.klient.ToList();
             newClientGrid.DataContext = new klient();
             mainGrid.DataContext = new wypozyczenie();
+        }
+
+        private List<ksiazka> GetAvailableBooks()
+        {
+            var wypozyczenia = (from wypozyczenie in context.wypozyczenie
+                               where wypozyczenie.data_oddania == null
+                               select wypozyczenie).ToList();
+            var ksiazki = context.ksiazka.ToList();
+            foreach (var w in wypozyczenia)
+            {
+                ksiazki.Remove(w.ksiazka);
+            }
+            return ksiazki;
         }
 
         private void ChangeKlientType(object sender, RoutedEventArgs e)
