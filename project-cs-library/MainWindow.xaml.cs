@@ -29,6 +29,7 @@ namespace project_cs_library
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            dataDoPicker.SelectedDate = DateTime.Now;
             System.Windows.Data.CollectionViewSource wypozyczenieViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wypozyczenieViewSource")));
             wypozyczenieViewSource.Source = context.wypozyczenie.ToList();
         }
@@ -46,7 +47,7 @@ namespace project_cs_library
                         (title.Length > 0 ? wypozyczenie.ksiazka.tytul.Contains(title) : true) &&
                         (autor.Length > 0 ? wypozyczenie.ksiazka.autor.imie.Contains(autor) || wypozyczenie.ksiazka.autor.nazwisko.Contains(autor) : true) &&
                         (dateFrom != null ? wypozyczenie.data_oddania > dateFrom || wypozyczenie.data_wypozyczenia > dateFrom : true) &&
-                        (dateTo != null ? wypozyczenie.data_oddania < dateTo || wypozyczenie.data_wypozyczenia < dateTo : true)
+                        (dateTo != null ? wypozyczenie.data_oddania < dateTo || wypozyczenie.data_wypozyczenia < dateTo : wypozyczenie.data_oddania == null)
                         select wypozyczenie;
 
             wypozyczenieViewSource.Source = query.ToList();
